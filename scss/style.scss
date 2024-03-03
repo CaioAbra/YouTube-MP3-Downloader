@@ -1,0 +1,80 @@
+// main.scss
+
+
+
+@import 'variables';
+@import 'mixins';
+@import 'collors';
+@import 'layouts/responsiveness';
+@import 'layouts/spacers';
+@import 'layouts/text';
+@import 'components/navbar';
+@import 'components/carousel';
+@import 'components/cards';
+@import 'components/footer';
+@import 'components/accordion';
+
+// Estilos para todos os elementos
+*,
+::after,
+::before {
+    box-sizing: border-box;
+
+    @include media-query("md") {
+        line-height: 1.5;
+    }
+
+    @include media-query("xl") {
+        line-height: 1.75;
+    }
+}
+
+
+// Outras variáveis, se necessário
+$cor-link: $cor-secundaria-1;
+
+// Estilo de um link
+a {
+    color: $cor-link;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: darken($cor-link, 10%); // Pode usar funções do SCSS, como darken para escurecer a cor
+    }
+}
+
+// Estilos para o corpo do documento
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    color: $cor-texto;
+    background-color: $cor-fundo;
+    overflow-x: hidden;
+}
+
+.card {
+    margin: 3rem auto;
+}
+
+input {
+    border-radius: .5rem;
+    border: 1px solid;
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 1.61rem;
+    padding: .5rem 1rem;
+}
+
+button {
+    width: 100%;
+    border-radius: .5rem;
+    border: 1px solid;
+    cursor: pointer;
+    padding: .4rem;
+}

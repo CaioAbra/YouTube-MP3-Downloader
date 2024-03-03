@@ -1,0 +1,9 @@
+// _mixins.scss
+
+@mixin media-query($breakpoint) {
+    $width: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $width) {
+        @content;
+    }
+}

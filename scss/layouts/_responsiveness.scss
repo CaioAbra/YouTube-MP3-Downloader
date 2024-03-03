@@ -1,0 +1,152 @@
+// Estilos para o elemento com classe "container"
+.container {
+    width: 100%;
+    margin: auto;
+    padding: 0 nth($spacing, 1);
+    max-width: 100%;
+
+    // Configurações de largura e padding para diferentes tamanhos de tela
+    @include media-query("sm") {
+        padding: 0 nth($spacing, 2);
+        max-width: 34rem;
+    }
+
+    @include media-query("md") {
+        padding: 0 nth($spacing, 3);
+        max-width: 48rem;
+    }
+
+    @include media-query("lg") {
+        padding: 0 nth($spacing, 4);
+        max-width: calc(100vw - #{nth($spacing, 4)});
+    }
+
+    @include media-query("xl") {
+        padding: 0 nth($spacing, 5);
+        max-width: calc(100vw - #{nth($spacing, 5)} * 2);
+    }
+}
+
+// Classe para o elemento com classe "row"
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+// Colunas
+@function calculate-column-width($columns) {
+    $base-column-width: calc(100% / 12);
+    $column-width: $base-column-width * $columns;
+    @return $column-width;
+}
+
+// Iterar sobre os breakpoints e definir largura para cada número de colunas
+@each $breakpoint, $max-width in $breakpoints {
+    @media screen and (min-width: $max-width) {
+        @for $i from 1 through 12 {
+            .col-#{$breakpoint}-#{$i} {
+                width: calculate-column-width($i) !important;
+            }
+        }
+    }
+}
+
+.col {
+    @for $i from 1 through 12 {
+        &-#{$i} {
+            width: calculate-column-width($i);
+        }
+    }
+}
+
+@each $breakpoint, $max-width in $breakpoints {
+    @media screen and (max-width: $max-width) {
+        .col-#{$breakpoint} {
+            &.col {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Definir colunas extras-large
+@media screen and (min-width: map-get($breakpoints, "extra-large")) {
+    .col-xl {
+        @for $i from 1 through 12 {
+            &-#{$i} {
+                width: calculate-column-width($i) !important;
+            }
+        }
+    }
+}
+
+// Configurações de display
+$display-values: (
+    "block": block,
+    "inline": inline,
+    "inline-block": inline-block,
+    "flex": flex,
+    "grid": grid,
+);
+
+@each $name, $value in $display-values {
+    .d-#{$name} {
+        display: $value;
+    }
+}
+
+// Configurações de justify-content
+$justify-content-values: (
+    "start": flex-start,
+    "end": flex-end,
+    "center": center,
+    "between": space-between,
+    "around": space-around,
+    "evenly": space-evenly,
+);
+
+@each $name, $value in $justify-content-values {
+    .justify-content-#{$name} {
+        justify-content: $value;
+    }
+}
+
+// Definir tamanhos de coluna do Bootstrap e adicionar padding
+$col-sizes: (
+    "",
+    "xs",
+    "sm",
+    "md",
+    "lg",
+    "xl"
+);
+$col-padding: 0.7rem;
+
+@each $size in $col-sizes {
+    @for $i from 1 through 12 {
+        .col-#{$size}-#{$i} {
+            padding: $col-padding;
+        }
+
+        .col-#{$i} {
+            padding: $col-padding;
+        }
+    }
+}
+
+// Configurações de align-content
+$align-content-values: (
+    "start": flex-start,
+    "end": flex-end,
+    "center": center,
+    "between": space-between,
+    "around": space-around,
+    "stretch": stretch
+);
+
+@each $name, $value in $align-content-values {
+    .align-content-#{$name} {
+        align-content: $value;
+    }
+}

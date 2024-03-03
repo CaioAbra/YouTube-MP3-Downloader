@@ -1,0 +1,21 @@
+footer {
+    background-color: $cor-primaria;
+    font-size: .8rem;
+
+    h3,
+    h6,
+    p {
+        color: $cor-texto-navbar;
+    }
+
+    .footer-infos {
+        p {
+            padding-left: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: $cor-texto-navbar;
+        }
+    }
+}

@@ -73,4 +73,5 @@ def update_progress(message):
 if __name__ == '__main__':
     api = YouTubeDownloaderApp()
     webview.create_window('YouTube MP3 Downloader', 'index.html', js_api=api)
-    webview.start()
+    # webview.start(debug=True)
+    webview.start(debug=False)

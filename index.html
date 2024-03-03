@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -10,35 +10,66 @@
 
 <body>
     <div class="container">
-        <h1 class="heading">YouTube MP3 Downloader</h1>
+        <div class="card">
+            <div class="row">
+                <div class="col-12 text-align-center">
+                    <h1 class="heading">YouTube MP3 Downloader</h1>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="youtube-link" class="form-label">Insira o link do YouTube:</label>
-            <input type="text" id="youtube-link" class="form-input" name="youtube-link" size="25">
+            <div class="row">
+                <div class="col-12 pb-0">
+                    <label for="youtube-link" class="form-label">Insira o link do YouTube:</label>
+                </div>
+                <div class="col-12 pt-0 pb-0">
+                    <input type="text" id="youtube-link" class="form-input" name="youtube-link" size="25">
+                </div>
+                <div class="col-12">
+                    <button onclick="validateQuality()" class="btn">Validar Qualidade</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 pb-0">
+                    <label for="quality-select" class="form-label">Qualidade da música:</label>
+                </div>
+                <div class="col-12 pt-0">
+                    <select id="quality-select" class="form-select">
+                        <option selected disabled>Escolha uma opção...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 pb-0">
+                    <label for="selected-folder" class="form-label">Pasta selecionada:</label>
+                </div>
+                <div class="col-12 pt-0">
+                    <input type="text" id="selected-folder" class="form-input" name="selected-folder" readonly size="25"
+                        onclick="chooseFolder()">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <button onclick="chooseFolder()" class="btn">Selecionar Pasta</button>
+                </div>
+                <div class="col-4">
+                    <button onclick="download()" class="btn btn-primary">Baixar</button>
+                </div>
+                <div class="col-4">
+                    <button onclick="clearFields()" class="btn btn-secondary">Fazer novo download</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p id="progress-label" class="progress-label"></p>
+                </div>
+            </div>
         </div>
-
-        <button onclick="validateQuality()" class="btn">Validar Qualidade</button>
-
-        <div class="form-group">
-            <label for="quality-select" class="form-label">Qualidade da música:</label>
-            <select id="quality-select" class="form-select">
-                <option selected disabled>Escolha uma opção...</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="selected-folder" class="form-label">Pasta selecionada:</label>
-            <input type="text" id="selected-folder" class="form-input" name="selected-folder" readonly size="25">
-        </div>
-
-        <button onclick="chooseFolder()" class="btn">Selecionar Pasta</button>
-
-        <button onclick="download()" class="btn btn-primary">Baixar</button>
-
-        <button onclick="clearFields()" class="btn btn-secondary">Fazer novo download</button>
-
-        <p id="progress-label" class="progress-label"></p>
     </div>
+
     <script src="script.js"></script>
 </body>
 

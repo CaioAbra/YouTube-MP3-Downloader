@@ -1,0 +1,28 @@
+// _variables.scss
+$breakpoints: (
+    "xs": 320px,
+    "sm": 480px,
+    "md": 768px,
+    "lg": 1024px,
+    "xl": 1200px
+);
+
+$spacing: (
+    1rem,
+    2rem,
+    3rem,
+    4rem,
+    5rem
+);
+
+$fontSizes: (
+    h1: 3.5rem,
+    h2: 3rem,
+    h3: 2.5rem,
+    h4: 2rem,
+    h5: 1.5rem,
+    h6: 1.2rem,
+);
+
+$lineHeightStep: 0.1;
+$marginBottomTitle: 0.5vh;
