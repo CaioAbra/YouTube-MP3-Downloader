@@ -1,10 +1,9 @@
 import threading
-import webview
 import tkinter as tk
 from tkinter import filedialog
-from pytube import YouTube
 import os
-
+import webview
+from pytube import YouTube
 
 class YouTubeDownloaderApp:
     MAIN_AUDIO_QUALITIES = ["256kbps", "192kbps", "128kbps"]
@@ -17,20 +16,27 @@ class YouTubeDownloaderApp:
             self.update_quality_options(self.quality_cache[link])
             return
 
-        def analyze_qualities():
+        def analyze_qualities(callback):
             try:
                 yt = YouTube(link)
                 streams = yt.streams.filter(only_audio=True)
-                available_qualities = [stream.abr for stream in streams if
-                                       stream.abr.endswith("kbps")]
-                available_qualities.sort(key=lambda x: int(x[:-4]))
-                self.quality_cache[link] = available_qualities
-                self.update_quality_options(available_qualities)
+                available_qualities = [stream.abr for stream in streams if stream.abr.endswith("kbps")]
+                if available_qualities:
+                    available_qualities.sort(key=lambda x: int(x[:-4]))
+                    self.quality_cache[link] = available_qualities
+                    callback(available_qualities)
+                else:
+                    self.show_alert("Nenhuma qualidade de áudio disponível para este vídeo.")
+                    callback([])
             except Exception as e:
                 print("Erro ao obter as qualidades disponíveis:", e)
                 self.show_alert("Erro ao obter as qualidades disponíveis.")
+                callback([])
 
-        thread = threading.Thread(target=analyze_qualities)
+        def callback_wrapper(qualities):
+            webview.windows[0].evaluate_js(f"updateQualityOptions({qualities})")
+
+        thread = threading.Thread(target=analyze_qualities, args=(callback_wrapper,))
         thread.start()
 
     def update_quality_options(self, qualities):
@@ -38,10 +44,9 @@ class YouTubeDownloaderApp:
 
     def choose_folder(self):
         root = tk.Tk()
-        root.withdraw()  # Oculta a janela principal
+        root.withdraw()
         download_folder = filedialog.askdirectory()
 
-        # Mostra arquivos .mp3 na janela de seleção de pasta
         if download_folder:
             mp3_files = [file for file in os.listdir(download_folder) if file.endswith(".mp3")]
             mp3_files_string = "\n".join(mp3_files)
@@ -65,13 +70,12 @@ class YouTubeDownloaderApp:
             self.show_alert(f"Erro durante o download: {e}")
 
     def show_alert(self, message):
-        print(message)  # Mostra a mensagem no terminal
+        print(message)
 
 def update_progress(message):
-    print(message)  # Mostra a mensagem no terminal
+    print(message)
 
 if __name__ == '__main__':
     api = YouTubeDownloaderApp()
     webview.create_window('YouTube MP3 Downloader', 'index.html', js_api=api)
-    # webview.start(debug=True)
     webview.start(debug=False)
