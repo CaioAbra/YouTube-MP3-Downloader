@@ -22,7 +22,7 @@
                     <label for="youtube-link" class="form-label">Insira o link do YouTube:</label>
                 </div>
                 <div class="col-12 pb-1">
-                    <input type="text" id="youtube-link" class="form-input" name="youtube-link" size="25">
+                    <input type="text" id="youtube-link" class="form-input" name="youtube-link">
                 </div>
                 <div class="col-12">
                     <button onclick="validateQuality()" class="btn">Validar Qualidade</button>
@@ -41,17 +41,16 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row ">
                 <div class="col-12 pb-1">
                     <label for="selected-folder" class="form-label">Pasta selecionada:</label>
                 </div>
                 <div class="col-12 pb-1">
-                    <input type="text" id="selected-folder" class="form-input" name="selected-folder" readonly size="25"
-                        onclick="chooseFolder()">
+                    <input type="text" id="selected-folder" class="form-input" name="selected-folder" readonly onclick="chooseFolder()">
                 </div>
-                <div class="col-12">
+                <div class="col-12 d-flex">
                     <button onclick="chooseFolder()" class="btn">Selecionar Pasta</button>
-                    <button onclick="download()" class="btn btn-primary">Baixar</button>
+                    <button onclick="download()" class="btn btn-primary mx-1">Baixar</button>
                     <button onclick="clearFields()" class="btn btn-secondary">Fazer novo download</button>
                 </div>
             </div>
