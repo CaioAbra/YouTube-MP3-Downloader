@@ -44,7 +44,7 @@ class YouTubeDownloaderApp:
 
     def choose_folder(self):
         root = tk.Tk()
-        root.withdraw()
+        root.withdraw()  # Oculta a janela principal
         download_folder = filedialog.askdirectory()
 
         if download_folder:
@@ -70,10 +70,10 @@ class YouTubeDownloaderApp:
             self.show_alert(f"Erro durante o download: {e}")
 
     def show_alert(self, message):
-        print(message)
+        print(message)  # Mostra a mensagem no terminal
 
 def update_progress(message):
-    print(message)
+    print(message)  # Mostra a mensagem no terminal
 
 if __name__ == '__main__':
     api = YouTubeDownloaderApp()
