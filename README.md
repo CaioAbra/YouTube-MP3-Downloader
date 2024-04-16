@@ -1,37 +1,37 @@
-# YouTube MP3 Downloader - Versão 1.0 Beta
+# YouTube MP3 Downloader
 
-Este é um aplicativo simples de download de MP3 do YouTube desenvolvido em Python usando a biblioteca Tkinter para a interface gráfica e a biblioteca Pytube para baixar vídeos do YouTube.
+Este é um aplicativo simples de download de áudio do YouTube, construído com Python, Tkinter e PyWebView.
 
 ## Funcionalidades
 
-- Inserir link do YouTube
-- Escolher a qualidade do áudio
-- Escolher o local de destino para o download
-- Baixar o áudio do YouTube em formato MP3
-- Estilização moderna dos botões
+- Insira um link do YouTube para validar a qualidade do áudio disponível.
+- Escolha a qualidade desejada para o áudio a ser baixado.
+- Selecione uma pasta de destino para o download.
+- Baixe o áudio do YouTube para o local selecionado.
 
-## Pré-requisitos
+## Requisitos
 
 - Python 3.x
-- Bibliotecas necessárias: tkinter, pytube
+- PyWebView
+- pytube
 
 ## Instalação
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+1. Clone o repositório para o seu ambiente local:
+2. Instale as dependências necessárias:
 
-## Navegue até o diretório do projeto:
-   cd nome-do-repositorio
 
-## Instale as dependências:
-   pip install -r requirements.txt
+## Como usar
 
-## Utilização
-   python index.py
+1. Execute o arquivo `main.py`:
+2. Insira o link do vídeo do YouTube na caixa de entrada.
+3. Clique no botão "Validar Qualidade" para ver as opções de qualidade disponíveis.
+4. Selecione a qualidade desejada no menu suspenso.
+5. Clique no botão "Selecionar Pasta" para escolher a pasta de destino para o download.
+6. Clique no botão "Baixar" para iniciar o download do áudio.
+7. Aguarde até que o download seja concluído.
+8. Você verá uma mensagem indicando que o download foi concluído com sucesso.
 
-1. Insira o link do vídeo do YouTube desejado no campo de entrada.
-2. Escolha a qualidade do áudio na lista suspensa.
-3. Clique no botão "Escolher Pasta" para selecionar o local de destino para o download.
-4. Clique no botão "Baixar" para iniciar o download do áudio do YouTube em formato MP3.
+## Contribuindo
 
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um issue ou enviar um pull request com melhorias ou correções.

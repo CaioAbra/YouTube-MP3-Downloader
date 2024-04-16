@@ -4,6 +4,10 @@ from tkinter import filedialog
 import os
 import webview
 from pytube import YouTube
+from flask import Flask
+
+
+app = Flask(__name__, static_url_path='/static')
 
 class YouTubeDownloaderApp:
     MAIN_AUDIO_QUALITIES = ["256kbps", "192kbps", "128kbps"]
@@ -34,13 +38,17 @@ class YouTubeDownloaderApp:
                 callback([])
 
         def callback_wrapper(qualities):
-            webview.windows[0].evaluate_js(f"updateQualityOptions({qualities})")
+            # Use o nome do arquivo Python atual (__file__) para obter o diretório estático
+            static_dir = os.path.dirname(os.path.abspath(__file__))
+            webview.windows[0].evaluate_js(f"updateQualityOptions({qualities})", static_dir)
 
         thread = threading.Thread(target=analyze_qualities, args=(callback_wrapper,))
         thread.start()
 
     def update_quality_options(self, qualities):
-        webview.windows[0].evaluate_js(f"updateQualityOptions({qualities})")
+        # Use o nome do arquivo Python atual (__file__) para obter o diretório estático
+        static_dir = os.path.dirname(os.path.abspath(__file__))
+        webview.windows[0].evaluate_js(f"updateQualityOptions({qualities})", static_dir)
 
     def choose_folder(self):
         root = tk.Tk()
@@ -77,5 +85,5 @@ def update_progress(message):
 
 if __name__ == '__main__':
     api = YouTubeDownloaderApp()
-    webview.create_window('YouTube MP3 Downloader', 'index.html', js_api=api)
+    webview.create_window('YouTube MP3 Downloader', './static/index.html', js_api=api)
     webview.start(debug=False)
